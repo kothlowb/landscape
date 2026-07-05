@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
+import { currency } from "@/lib/format";
 import type { BookingSummary } from "@/lib/services/booking";
 import { isMapsConfigured, type SelectedPlace } from "@/lib/services/google-maps";
 import {
@@ -10,11 +11,6 @@ import {
 } from "./actions";
 import AddressInput from "./address-input";
 import PropertyMap from "./property-map";
-
-const currency = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
 
 interface DateOption {
   iso: string;

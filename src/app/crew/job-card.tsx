@@ -1,35 +1,15 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import StatusBadge from "@/components/status-badge";
+import { currency } from "@/lib/format";
 import type { CrewJob } from "@/lib/services/jobs";
-import type { JobStatus } from "@/lib/types";
 import {
   clockInAction,
   clockOutAction,
   completeJobAction,
   type CrewActionResult,
 } from "./actions";
-
-const STATUS_STYLES: Record<JobStatus, string> = {
-  requested: "bg-sun/25 text-ink",
-  scheduled: "bg-sage/40 text-pine-deep",
-  in_progress: "bg-fern/20 text-fern",
-  completed: "bg-pine text-canvas",
-  cancelled: "bg-mist text-ink-soft",
-};
-
-const STATUS_LABELS: Record<JobStatus, string> = {
-  requested: "Requested",
-  scheduled: "Scheduled",
-  in_progress: "In progress",
-  completed: "Completed",
-  cancelled: "Cancelled",
-};
-
-const currency = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
 
 export default function JobCard({ job }: { job: CrewJob }) {
   const [pending, startTransition] = useTransition();
@@ -56,11 +36,7 @@ export default function JobCard({ job }: { job: CrewJob }) {
             {job.laborMinutes > 0 && ` · ${job.laborMinutes} min logged`}
           </p>
         </div>
-        <span
-          className={`rounded-full px-3 py-1 text-xs font-semibold ${STATUS_STYLES[job.status]}`}
-        >
-          {STATUS_LABELS[job.status]}
-        </span>
+        <StatusBadge status={job.status} />
       </div>
 
       {clockedIn && (
