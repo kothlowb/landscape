@@ -1,26 +1,29 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Palette: deep pine luxury with warm summer gold and cream. */
+@theme {
+  --color-canvas: #faf6ec;
+  --color-card: #fffdf7;
+  --color-ink: #1c2b21;
+  --color-ink-soft: #5b6a58;
+  --color-pine: #1e4d35;
+  --color-pine-deep: #123324;
+  --color-fern: #43805d;
+  --color-sage: #a9c4ae;
+  --color-gold: #b08a36;
+  --color-gold-bright: #d8b45e;
+  --color-sun: #f2bd51;
+  --color-mist: #e9e0cb;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
+  --font-display: var(--font-fraunces);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
 }
