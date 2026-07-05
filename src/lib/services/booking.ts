@@ -3,6 +3,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import type { Customer, Job, Property } from "@/lib/types";
+import { toISODate } from "@/lib/dates";
 import { estimateLotSize } from "./lot-size";
 import { calculateQuote } from "./pricing";
 import { getLawnMowingService } from "./services";
@@ -29,11 +30,6 @@ export interface BookingSummary {
   turfSqft: number;
   customerName: string;
   customerEmail: string;
-}
-
-function toISODate(date: Date): string {
-  const pad = (n: number) => String(n).padStart(2, "0");
-  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
 }
 
 function validate(req: BookingRequest): void {
